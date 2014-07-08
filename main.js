@@ -159,7 +159,6 @@ define(function (require, exports, module) {
                     railRoad.Regex2RailRoadDiagram(this.clean(this.word), $('#regex_diagram').get(0));
                     this.panel.show();
                 } else if (!this.word) {
-                    debugger;
                     this.panel.hide();
                 } else {
                     this.panel.show();
