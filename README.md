@@ -23,3 +23,8 @@ The extension will automatically display the diagram of the RegExp found under t
 The extension appends a new entry called *Show RegExp Diagram* into the View menu that is toggled by default.
 
 To disable the extension, simply select this menu entry.
+
+### Limitations
+
+* The extension won't detect regexp found inside strings (eg. `new RegExp(/^foo/)`)
+* Complex RegExp may not be rendered correctly
