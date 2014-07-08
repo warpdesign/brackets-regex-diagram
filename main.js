@@ -155,7 +155,6 @@ define(function (require, exports, module) {
                     previousWord = this.word;
 
                     this.panelElement.empty();
-                    console.log('attempt to call Regex2RailRoadDiagram with', this.clean(this.word), '...');
                     railRoad.Regex2RailRoadDiagram(this.clean(this.word), $('#regex_diagram').get(0));
                     this.panel.show();
                 } else if (!this.word) {
@@ -169,15 +168,11 @@ define(function (require, exports, module) {
             var regex = '';
 
             if (editor) {
-                if (editor.hasSelection()) {
-                    regex = editor.getSelectedText();
-                } else {    // get first found regexp for now
-                    // regex = editor.document.getLine(editor.getCursorPos().line);
+                if (!editor.hasSelection()) {
                     // get token under cursor
                     regex = editor._codeMirror.getTokenAt(editor.getCursorPos());
 
                     if (regex && regex.type === "string-2") {
-                        console.log('regex', regex);
                         regex = regex.string;
                     } else {
                         regex = '';
