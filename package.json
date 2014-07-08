@@ -1,7 +1,7 @@
 {
     "name": "brackets-regex-diagram",
-    "title": "a railroad diagram of regular expressions",
-    "description": "a regular expression railroad diagram view for regexp under the cursor",
+    "title": "Railroad diagram of regular expressions",
+    "description": "A regular expression railroad diagram view for regexp under the cursor",
     "homepage": "https://github.com/warpdesign/brackets-regex-diagram",
     "version": "0.0.1",
     "repository": {
