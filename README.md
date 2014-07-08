@@ -9,3 +9,17 @@ This extension is heavily based on:
 * [railroad-diagrams](http://github.com/tabatkins/railroad-diagrams) Rairoad Diagrams by [Tab Atkins Jr.](http://twitter.com/tabatkins)
 
 ![brackets-regex-diagram](img/screenshot.png)
+
+### How to use it?
+
+Install the extension and move your cursor over a regular expression, for example:
+
+`/^foo/`
+
+The extension will automatically display the diagram of the RegExp found under the cursor.
+
+### How disable it?
+
+The extension appends a new entry called *Show RegExp Diagram* into the View menu that is toggled by default.
+
+To disable the extension, simply select this menu entry.
