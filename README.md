@@ -26,5 +26,5 @@ To disable the extension, simply select this menu entry.
 
 ### Limitations
 
-* The extension won't detect regexp found inside strings (eg. `new RegExp(/^foo/)`)
+* The extension won't detect regexp found inside strings (eg. `new RegExp("^foo")`)
 * Complex RegExp may not be rendered correctly
