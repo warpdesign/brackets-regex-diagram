@@ -1,0 +1,21 @@
+{
+    "name": "brackets-regex-diagram",
+    "title": "Shows a diagram of selected regex",
+    "description": "Shows a diagram of regex under mouse cursor",
+    "homepage": "https://bitbucket.org/warpdesign/brackets-regex-diagram",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://bitbucket.org/warpdesign/brackets-regex-diagram.git"
+    },
+    "author": {
+        "name": "Nicolas Ramz",
+        "email": "<nicolas.ramz@gmail.com>",
+        "url": "https://github.com/warpdesign"
+    },
+    "license": "MIT",
+    "categories": "language",
+    "engines": {
+        "brackets": ">=0.41.0"
+    }
+}
