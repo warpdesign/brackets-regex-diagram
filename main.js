@@ -59,7 +59,6 @@ define(function (require, exports, module) {
                     CommandManager.get(SHOW_REGEX_DIAGRAM).setChecked(false);
                 }
 
-                console.log('[regex-diagram] initial DocumentChange');
                 that.onCurrentDocumentChange(null, EditorManager.getFocusedEditor());
             });
         },
@@ -77,8 +76,6 @@ define(function (require, exports, module) {
         },
         onStateChange: function() {
             var stateManager = PreferencesManager.stateManager.getPrefixedSystem(EXTENSION_NAME);
-
-            console.log('[regex-diagram] onStateChange', stateManager.get('showDiagram'));
 
             this.active = stateManager.get('showDiagram');
         },
@@ -133,7 +130,6 @@ define(function (require, exports, module) {
 
             this.panel.hide();
 
-            console.log('[regex-diagram] currentDocumentChange', event, activeEditor);
             if (activeEditor && this.editors.indexOf(activeEditor) === -1) {
                 this.editors.push(activeEditor);
 
@@ -143,17 +139,14 @@ define(function (require, exports, module) {
             this.onCursorActivity();
         },
         onCursorActivity: function() {
-            console.log('[regex-diagram] onCursorActivity');
             var editor = EditorManager.getFocusedEditor(),
                 previousWord = this.word,
                 titleHeight = 0,
                 svgHeight = null;
 
             if (!editor || !this.active) {
-                console.log('[regex-diagram] onCursorActivity => not', editor, this.active, this.word);
                 this.panel.hide();
             } else {
-                console.log('[regex-diagram] onCursorActivity => yes');
                 // get word under cursor
                 this.word = this.getCurrentWord(editor);
 
@@ -164,7 +157,7 @@ define(function (require, exports, module) {
                     this.$diagramDiv.empty();
 
                     // generate diagram onto panel
-                    railRoad.Regex2RailRoadDiagram(this.clean(this.word), this.$diagramDiv[0]);
+                    railRoad.Regex2RailRoadDiagram(this.word, this.$diagramDiv[0]);
 
                     // change title
                     this.$titleSpan.html(this.word);
@@ -198,7 +191,7 @@ define(function (require, exports, module) {
                 }
             }
 
-            return regex;
+            return this.clean(regex);
         },
         clean: function(text) {
             var m;

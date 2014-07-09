@@ -3,7 +3,7 @@
     "title": "Railroad diagram of regular expressions",
     "description": "A regular expression railroad diagram view for regexp under the cursor",
     "homepage": "https://github.com/warpdesign/brackets-regex-diagram",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "repository": {
         "type": "git",
         "url": "https://github.com/warpdesign/brackets-regex-diagram.git"
