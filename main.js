@@ -83,6 +83,8 @@ define(function (require, exports, module) {
             this.active = stateManager.get('showDiagram');
         },
         createDomElements: function() {
+            var $panel;
+
             console.log('[regex-diagram] createDomElements');
             // Then create a menu item bound to the command
             // The label of the menu item is the name we gave the command (see above)
@@ -94,8 +96,11 @@ define(function (require, exports, module) {
             menu.addMenuItem(SHOW_REGEX_DIAGRAM, "Ctrl-Alt-D");
 
             this.panel = PanelManager.createBottomPanel(SHOW_REGEX_DIAGRAM, $(panelHtml), 200);
+            $panel = this.panel.$panel;
 
-            this.panelElement = $('#regex_diagram');
+            this.$titleSpan = $panel.find('span.regexp');
+            this.$titleDiv = $panel.find('.toolbar');
+            this.$diagramDiv = $panel.find('.regex-diagram');
         },
         bindEvents: function() {
             console.log('[regex-diagram] bindEvents');
@@ -140,7 +145,9 @@ define(function (require, exports, module) {
         onCursorActivity: function() {
             console.log('[regex-diagram] onCursorActivity');
             var editor = EditorManager.getFocusedEditor(),
-                previousWord = this.word;
+                previousWord = this.word,
+                titleHeight = 0,
+                svgHeight = null;
 
             if (!editor || !this.active) {
                 console.log('[regex-diagram] onCursorActivity => not', editor, this.active, this.word);
@@ -154,8 +161,19 @@ define(function (require, exports, module) {
                 if (this.word && previousWord !== this.word) {
                     previousWord = this.word;
 
-                    this.panelElement.empty();
-                    railRoad.Regex2RailRoadDiagram(this.clean(this.word), $('#regex_diagram').get(0));
+                    this.$diagramDiv.empty();
+
+                    // generate diagram onto panel
+                    railRoad.Regex2RailRoadDiagram(this.clean(this.word), this.$diagramDiv[0]);
+
+                    // change title
+                    this.$titleSpan.html(this.word);
+
+                    // resize panel: since it's resizable, it shouldn't be automatically resized
+                    // svgHeight = this.$diagramDiv.find('svg').attr('height');
+                    // titleHeight = this.$titleDiv.height();
+                    // this.panel.$panel.height(svgHeight + titleHeight);
+
                     this.panel.show();
                 } else if (!this.word) {
                     this.panel.hide();
