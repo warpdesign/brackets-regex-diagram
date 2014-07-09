@@ -1,7 +1,7 @@
 brackets-regex-diagram
 ======================
 
-A regular expression railroad diagram view for regexp under the cursor. This was written so that I can get familiar with Brackets development.
+An extension for Adobe [Brackets](http://brackets.io) editor that adds a regular expression railroad diagram view for regexp under the cursor.
 
 This extension is heavily based on:
 
