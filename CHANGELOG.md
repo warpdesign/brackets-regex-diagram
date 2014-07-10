@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.4
+* IMPROVED: add overflow:auto to panel so that it can be scrolled without moving panel
+
 ## 0.0.3
 * FIXED: do not open diagram panel with '/' string
 * CLEANED-UP: removed some frequent debug messages

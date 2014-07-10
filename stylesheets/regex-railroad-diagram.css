@@ -22,3 +22,7 @@
 #regex_diagram .toolbar span{
     font-weight:normal;
 }
+
+#regex_diagram{
+    overflow:auto;
+}
