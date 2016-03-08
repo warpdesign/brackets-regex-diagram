@@ -10,9 +10,10 @@ define(function (require, exports, module) {
         PanelManager       = brackets.getModule("view/PanelManager"),
         Menus              = brackets.getModule("command/Menus"),
         ExtensionUtils     = brackets.getModule("utils/ExtensionUtils"),
-        DocumentManager    = brackets.getModule("document/DocumentManager"),
         PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
-        AppInit            = brackets.getModule("utils/AppInit");
+        AppInit            = brackets.getModule("utils/AppInit"),
+        WorkspaceManager   = brackets.getModule("view/WorkspaceManager"),
+        MainViewManager    = brackets.getModule("view/MainViewManager");
 
     // files needed by regex-diagram
     var railRoad           = require('thirdparty/regex-to-railroad'),
@@ -92,7 +93,7 @@ define(function (require, exports, module) {
             // We could also add a key binding at the same time:
             menu.addMenuItem(SHOW_REGEX_DIAGRAM, "Ctrl-Alt-D");
 
-            this.panel = PanelManager.createBottomPanel(SHOW_REGEX_DIAGRAM, $(panelHtml), 200);
+            this.panel = WorkspaceManager.createBottomPanel(SHOW_REGEX_DIAGRAM, $(panelHtml), 200);
             $panel = this.panel.$panel;
 
             this.$titleSpan = $panel.find('span.regexp');
@@ -101,7 +102,7 @@ define(function (require, exports, module) {
         },
         bindEvents: function() {
             console.log('[regex-diagram] bindEvents');
-            $(DocumentManager).on('currentDocumentChange', this.onCurrentDocumentChange.bind(this))
+            MainViewManager.on("currentFileChange", this.onCurrentDocumentChange.bind(this));
         },
         onToggleView: function() {
             console.log('[regex-diagram] onToggleView');
@@ -133,7 +134,7 @@ define(function (require, exports, module) {
             if (activeEditor && this.editors.indexOf(activeEditor) === -1) {
                 this.editors.push(activeEditor);
 
-                $(activeEditor).on('cursorActivity', this.onCursorActivity.bind(this));
+                activeEditor.on('cursorActivity', this.onCursorActivity.bind(this));
             }
 
             this.onCursorActivity();
@@ -202,15 +203,15 @@ define(function (require, exports, module) {
                 }
 
                 m = /^r('''|"""|"|')(.*)\1$/.exec(text);
-                if (m != null) {
+                if (m !== null) {
                   text = m[2];
                 }
                 m = /^\/\/\/(.*)\/\/\/\w*$/.exec(text);
-                if (m != null) {
+                if (m !== null) {
                   text = m[1].replace(/\s+/, "");
                 } else {
                   m = /^\/(.*)\/\w*$/.exec(text);
-                  if (m != null) {
+                  if (m !== null) {
                     text = m[1];
                   }
               }
