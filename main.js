@@ -134,7 +134,7 @@ define(function (require, exports, module) {
             if (activeEditor && this.editors.indexOf(activeEditor) === -1) {
                 this.editors.push(activeEditor);
 
-                $(activeEditor).on('cursorActivity', this.onCursorActivity.bind(this));
+                activeEditor.on('cursorActivity', this.onCursorActivity.bind(this));
             }
 
             this.onCursorActivity();
