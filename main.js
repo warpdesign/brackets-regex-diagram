@@ -183,7 +183,9 @@ define(function (require, exports, module) {
                     // get token under cursor
                     regex = editor._codeMirror.getTokenAt(editor.getCursorPos());
 
-                    if (regex && regex.type === "string-2") {
+                    // regular expressions will be a type 2 string, and always start
+                    // with a forward slash
+                    if (regex && regex.type === "string-2" && /^\//.test(regex.string)) {
                         regex = regex.string;
                     } else {
                         regex = '';
