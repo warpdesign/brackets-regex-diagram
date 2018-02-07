@@ -7,7 +7,6 @@ define(function (require, exports, module) {
     // get access to needed singletons
     var CommandManager     = brackets.getModule("command/CommandManager"),
         EditorManager      = brackets.getModule("editor/EditorManager"),
-        PanelManager       = brackets.getModule("view/PanelManager"),
         Menus              = brackets.getModule("command/Menus"),
         ExtensionUtils     = brackets.getModule("utils/ExtensionUtils"),
         PreferencesManager = brackets.getModule("preferences/PreferencesManager"),
